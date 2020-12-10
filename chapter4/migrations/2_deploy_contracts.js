@@ -7,8 +7,14 @@ var alice_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Messa
 var bob_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Bob"}])
 var carol_vote_hash = sigUtil.typedSignatureHash([{ type: 'string', name: 'Message', value: "Vote for Carol"}])
 
+var names = [
+  web3.utils.asciiToHex("Alice"),
+  web3.utils.asciiToHex("Bob"),
+  web3.utils.asciiToHex("Carol"),
+]
+
 module.exports = function(deployer) {
   deployer.deploy(ECRecovery);
   deployer.link(ECRecovery, Voting);
-  deployer.deploy(Voting, ['Alice', 'Bob', 'Carol'], [alice_vote_hash, bob_vote_hash, carol_vote_hash]);
+  deployer.deploy(Voting, names, [alice_vote_hash, bob_vote_hash, carol_vote_hash]);
 };
