@@ -18,6 +18,14 @@ module.exports = {
       {
        test: /\.css$/,
        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.js$/,
+        loader: 'istanbul-instrumenter-loader',
+        query: {
+          esModules: true
+        },
+        include: path.resolve('app/'),
       }
     ],
     loaders: [
